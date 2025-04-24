@@ -3,6 +3,10 @@ from django.contrib.auth.decorators import login_required
 from .forms import BookingForm
 
 
+def home(request):
+    return render(request, 'home.html')
+
+
 @login_required
 def book_service(request):
     if request.method == "POST":
