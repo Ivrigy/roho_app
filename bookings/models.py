@@ -48,3 +48,6 @@ def can_edit(self):
     today = timezone.localdate()
     return today <= self.end_date and (self.start_date - today).days >= 10
 
+
+def __str__(self):
+    return f"{self.get_service_type_display()} ({self.start_date}—{self.end_date})"
