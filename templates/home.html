@@ -1,60 +1,82 @@
 {% extends "base.html" %}
-{% load static %}
+{% load static %} 
 
 {% block content %}
 
 <!--Heading above hero-->
 <section class="text-center my-5">
-    <h2 class="text-white fw-bold">
-      LOOKING FOR SHARP, STYLISH AND UNSHAKEABLY RELIABLE STAFF?
-    </h2>
-  </section>
+  <h2 class="text-white fw-bold">
+    LOOKING FOR SHARP, STYLISH AND UNSHAKEABLY RELIABLE STAFF?
+  </h2>
+</section>
 <!--Hero image-->
 <section class="text-center mb-5">
-    <img src="{% static 'images/intro-pic.png' %}" alt="Booking Intro Graphic" class="img-fluid w-100" />
+  <img
+    src="{% static 'images/intro-pic.png' %}"
+    alt="Booking Intro Graphic"
+    class="img-fluid w-100"
+  />
 </section>
 
 <h3 class="text-center text-white mb-4">Choose the category to book:</h3>
 
 <!-- Booking Cards -->
 <div class="container mb-5">
-    <div class="row g-4 justify-content-center">
-      <!-- Card 1: Power Hands -->
+  <div class="row g-4 justify-content-center">
+    <!-- Card 1: Power Hands -->
     <div class="col-md-4">
-        <div class="card text-center roho-card">
-          <img src="{% static 'images/power-hands.jpg' %}" class="card-img-top" alt="Power Hands">
-          <div class="card-body">
-            <h5 class="card-title">POWER HANDS</h5>
-            <p class="card-text">We provide people that will work in the background of your event.</p>
-            <a href="{% url 'book_service' %}" class="btn roho-btn">Book</a>
-          </div>
+      <div class="card text-center roho-card">
+        <img
+          src="{% static 'images/power-hands.jpg' %}"
+          class="card-img-top"
+          alt="Power Hands"
+        />
+        <div class="card-body">
+          <h5 class="card-title">POWER HANDS</h5>
+          <p class="card-text">
+            We provide people that will work in the background of your event.
+          </p>
+          <a href="{% url 'book_service' %}" class="btn roho-btn">Book</a>
         </div>
       </div>
+    </div>
 
-      <!-- Card 2: Security -->
+    <!-- Card 2: Security -->
     <div class="col-md-4">
-        <div class="card text-center roho-card">
-          <img src="{% static 'images/security.jpg' %}" class="card-img-top" alt="Security">
-          <div class="card-body">
-            <h5 class="card-title">SECURITY</h5>
-            <p class="card-text">We provide people that will work in the background of your event.</p>
-            <a href="{% url 'book_service' %}" class="btn roho-btn">Book</a>
-          </div>
+      <div class="card text-center roho-card">
+        <img
+          src="{% static 'images/security.jpg' %}"
+          class="card-img-top"
+          alt="Security"
+        />
+        <div class="card-body">
+          <h5 class="card-title">SECURITY</h5>
+          <p class="card-text">
+            We provide people that will work in the background of your event.
+          </p>
+          <a href="{% url 'book_service' %}" class="btn roho-btn">Book</a>
         </div>
       </div>
+    </div>
 
-       <!-- Card 3: Promoters -->
+    <!-- Card 3: Promoters -->
     <div class="col-md-4">
-        <div class="card text-center roho-card">
-          <img src="{% static 'images/promoters.jpg' %}" class="card-img-top" alt="Promoters">
-          <div class="card-body">
-            <h5 class="card-title">PROMOTERS</h5>
-            <p class="card-text">We provide people that will work in the background of your event.</p>
-            <a href="{% url 'book_service' %}" class="btn roho-btn">Book</a>
-          </div>
+      <div class="card text-center roho-card">
+        <img
+          src="{% static 'images/promoters.jpg' %}"
+          class="card-img-top"
+          alt="Promoters"
+        />
+        <div class="card-body">
+          <h5 class="card-title">PROMOTERS</h5>
+          <p class="card-text">
+            We provide people that will work in the background of your event.
+          </p>
+          <a href="{% url 'book_service' %}" class="btn roho-btn">Book</a>
         </div>
       </div>
     </div>
   </div>
-  
-  {% endblock %}
+</div>
+
+{% endblock %}
