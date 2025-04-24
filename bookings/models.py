@@ -9,5 +9,9 @@ SERVICE_CHOICES = [
     ('promoters', 'Promoters'),
 ]
 
+def no_past_date(value):
+    if value < timezone.localdate():
+        raise ValidationError("Cannot book past dates.")
+    
 # Create your models here.
 
