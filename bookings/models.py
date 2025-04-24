@@ -27,6 +27,8 @@ class Booking(models.Model):
     event_name = models.CharField(max_length=100)
     service_type = models.CharField(max_length=20, choices=SERVICE_CHOICES)
     number_of_people = models.PositiveIntegerField()
+    hours = models.PositiveIntegerField()
+    budget = models.DecimalField(max_digits=10, decimal_places=2)
     start_date = models.DateField(validators=[no_past_date])
     end_date = models.DateField(validators=[no_past_date])
     additional_notes = models.TextField(blank=True)
