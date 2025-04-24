@@ -18,3 +18,20 @@ class BookingForm(forms.ModelForm):
             "end_date",
             "additional_notes",
         ]
+
+        widgets = {
+            "start_date": forms.DateInput(
+                attrs={
+                    "class": "form-control datepicker",
+                    "placeholder": "Select start date",
+                    "autocomplete": "off",
+                }
+            ),
+            "end_date": forms.DateInput(
+                attrs={
+                    "class": "form-control datepicker",
+                    "placeholder": "Select end date",
+                    "autocomplete": "off",
+                }
+            )
+        }
