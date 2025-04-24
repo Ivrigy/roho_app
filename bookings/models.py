@@ -36,18 +36,15 @@ class Booking(models.Model):
     slug = models.SlugField(unique=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+  
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(f"{self.name}-{self.start_date}")
+        super().save(*args, **kwargs)
 
+    def can_edit(self):
+        today = timezone.localdate()
+        return today <= self.end_date and (self.start_date - today).days >= 10
 
-def save(self, *args, **kwargs):
-    if not self.slug:
-        self.slug = slugify(f"{self.name}-{self.start_date}")
-    super().save(*args, **kwargs)
-
-
-def can_edit(self):
-    today = timezone.localdate()
-    return today <= self.end_date and (self.start_date - today).days >= 10
-
-
-def __str__(self):
-    return f"{self.get_service_type_display()} ({self.start_date}—{self.end_date})"
+    def __str__(self):
+        return f"{self.get_service_type_display()} ({self.start_date}—{self.end_date})"
