@@ -15,20 +15,55 @@
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
-    <header class="container py-3">
-        <div class="d-flex justify-content-between align-items-center">
-            <a href="{% url 'home' %}">
-                <img src="{% static 'images/logo.png' %}" alt="Roho Logo" style="max-height: 60px;">
-            </a>
-            <nav>
-                <ul class="nav">
-                    <li class="nav-item"><a href="{% url 'home' %}" class="nav-link">Home</a></li>
-                    <li class="nav-item"><a href="{% url 'book_service' %}" class="nav-link">Book Now</a></li>
-                    <li class="nav-item"><a href="{% url 'my_bookings' %}" class="nav-link">My Bookings</a></li>
-                    <li class="nav-item"><a href="{% url 'my_bookings' %}" class="nav-link">Sign Up</a></li>
-                    <li class="nav-item"><a href="{% url 'my_bookings' %}" class="nav-link">Login</a></li>
-                </ul>
-            </nav>
-        </div>        
+    
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+          <!-- Logo on the left -->
+          <a class="navbar-brand" href="{% url 'home' %}">
+            <img src="{% static 'images/logo.png' %}" alt="Roho Logo" style="max-height: 50px;">
+          </a>
+
+          <!--Burger-->
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+           aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+           <span class="navbar-toggler-icon"></span>
+          </button>
+      
+          <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link text-white" href="{% url 'home' %}">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-white" href="{% url 'book_service' %}">Book Now</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-white" href="{% url 'my_bookings' %}">My Bookings</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-white" href="{% url 'register' %}">Sign Up</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-white" href="{% url 'login' %}">Login</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    
+    <!--Main content-->
+    <main class="container my-4">
+        {% block content %}
+         <!-- Each page will be here -->
+         {% endblock %}
+    </main>
+
+    <!--Foote<header class="container py-3">r-->
+    <footer class="bg-dark text-white text-center py-3">
+        <p>&copy; Ivona Rieger for Roho. . All rights reserved.</p>
+
+    <!--Bootstrap JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
 </html>
