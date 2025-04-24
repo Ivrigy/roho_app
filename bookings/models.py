@@ -36,7 +36,7 @@ class Booking(models.Model):
     slug = models.SlugField(unique=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-  
+    
     def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = slugify(f"{self.name}-{self.start_date}")
