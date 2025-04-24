@@ -29,3 +29,20 @@ body {
     background-color: #AE9CFF;
     color: black;
 }
+
+input,
+select,
+textarea {
+    background-color: white;
+    color: #000000;
+    border-radius: 5px;
+    padding: 10px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+label {
+    color: azure;
+    font-weight: 500;
+}
+
