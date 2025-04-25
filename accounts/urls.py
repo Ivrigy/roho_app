@@ -18,9 +18,9 @@ urlpatterns = [
         auth_views.LogoutView.as_view(next_page="home"),
         name="logout"
     ),
-   # path(
-   #     "forgot-password/",
-   #     views.forgot_password,
+    #  path(
+    #     "forgot-password/",
+    #     views.forgot_password,
     #    name="forgot_password"
-    #)
+    #  )
 ]
