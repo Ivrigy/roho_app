@@ -47,10 +47,12 @@ label {
 }
 
 .roho-submit {
-    background-color: black;
-    color: white;
+    background-color: #00FF80;;
+    color: black;
     border: none;
     border-radius: 12px;
+    padding: 10px 30px;
+    font-weight: 500;
 }
 .roho-submit:hover {
     background-color: #AE9CFF;
