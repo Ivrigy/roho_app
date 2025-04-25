@@ -50,6 +50,8 @@ def edit_booking(request, booking_id):
         if form.is_valid():
             form.save()
             return redirect('my_bookings')
+
         else:
-            form = BookingForm(instance=booking)
-    return render(request, 'bookings/edit_booking.html', {'form': form, 'booking': booking})
+        form = BookingForm(instance=booking)
+
+        return render(request, 'bookings/edit_booking.html', {'form': form, 'booking': booking})
