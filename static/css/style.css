@@ -45,3 +45,24 @@ label {
     color: azure;
     font-weight: 500;
 }
+
+.roho-submit {
+    background-color: black;
+    color: white;
+    border: none;
+    border-radius: 12px;
+}
+.roho-submit:hover {
+    background-color: #AE9CFF;
+    color: black;
+}
+
+.card {
+    border-radius: 20px;
+    color: #000000;
+    
+}
+
+.card label {
+    color: #000000;
+}
