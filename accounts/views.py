@@ -16,7 +16,3 @@ def register(request):
         form = UserCreationForm()
 
     return render(request, "accounts/register.html", {"form": form})
-
-
-def login_view(request):
-    return render(request, 'accounts/login.html')
