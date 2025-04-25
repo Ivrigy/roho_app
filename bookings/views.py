@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from .forms import BookingForm
 from .models import Booking
@@ -29,3 +29,13 @@ def book_service(request):
 def my_bookings(request):
     bookings = Booking.objects.filter(user=request.user)
     return render(request, 'bookings/my_bookings.html', {'bookings': bookings})
+
+
+@login_required
+def delete_booking(request, booking_id):
+    booking = get_object_or_404(Booking, id=booking_id, user=request.user)
+
+    if request.method == 'POST':
+        booking.delete()
+        return redirect('my_bookings')
+    return render(request, 'bookings/confirm_delete.html', {'booking': booking})
