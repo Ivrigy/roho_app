@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .forms import BookingForm
+from .models import Booking
 
 
 def home(request):
@@ -22,3 +23,9 @@ def book_service(request):
         form = BookingForm()
 
     return render(request, 'bookings/book_service.html', {'form': form})
+
+
+@login_required
+def my_bookings(request):
+    bookings = Booking.objects.filter(user=request.user)
+    return render(request, 'bookings/my_bookings.html', {'bookings': bookings})
