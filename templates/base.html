@@ -43,6 +43,15 @@
           <li class="nav-item">
             <a class="nav-link text-white" href="{% url 'my_bookings' %}">My Bookings</a>
           </li>
+
+          <!--If user is logged in-->
+          {% if user.is_authenticated %}
+          <li class="nav-item">
+            <a class="nav-link text-white" href="{% url 'logout' %}">Logout</a>
+          </li>
+          {% else %}
+
+          <!--If user is not logged in-->
           <li class="nav-item">
             <a class="nav-link text-white" href="{% url 'register' %}">Sign Up</a>
           </li>
