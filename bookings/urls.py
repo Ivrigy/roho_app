@@ -2,8 +2,10 @@ from django.urls import path
 from . import views
 from django.http import HttpResponse
 
+
 def my_bookings(request):
     return HttpResponse("Coming soon...")
+
 
 urlpatterns = [
     path('', views.home, name='home'),
