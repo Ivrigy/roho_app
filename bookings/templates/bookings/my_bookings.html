@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2 class="text-white mb-4">Your Bookings!</h2>
+
+{% for booking in bookings %}
+<div class="card bg-dark text-white mb-3 p-3">
+    <h5 class="card-title">{{ booking.event_name }}</h5>
+    <p class="card-text">{{ booking.service_type }} | {{ booking.start_date }} to {{ booking.end_date }}</p>
+    
+    <div class="d-flex gap-2">
+        <a href="{% url 'edit_booking' booking.id %}" class="btn btn-success">Edit</a>
+        <a href="{% url 'delete_booking' booking.id %}" class="btn btn-danger">Delete</a>
+    </div>
+</div>
+{% empty %}
+<p class="text-white">You have no bookings yet.</p>
+{% endfor %}
+
+<div class="text-center mt-4">
+    <a href="{% url 'book_service' %}" class="btn btn-lg" style="background-color:#AE9CFF; color:black;">
+        Book New Service
+    </a>
+</div>
+
+{% endblock %}
