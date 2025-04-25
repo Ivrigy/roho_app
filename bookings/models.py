@@ -18,16 +18,16 @@ def no_past_date(value):
         raise ValidationError("Cannot book past dates.")
 
 
-# Create your models here.
-
-
 class Booking(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=100)
     company = models.CharField(max_length=100, blank=True)
     email = models.EmailField()
     event_name = models.CharField(max_length=100)
-    service_type = models.CharField(max_length=20, choices=SERVICE_CHOICES)
+    service_type = models.CharField(
+        max_length=20,
+        choices=SERVICE_CHOICES
+    )
     number_of_people = models.PositiveIntegerField()
     hours = models.PositiveIntegerField()
     budget = models.DecimalField(max_digits=10, decimal_places=2)
@@ -47,7 +47,11 @@ class Booking(models.Model):
 
     def can_edit(self):
         today = timezone.localdate()
-        return today <= self.end_date and (self.start_date - today).days >= 10
+        days_until = (self.start_date - today).days
+        return today <= self.end_date and days_until >= 10
 
     def __str__(self):
-        return f"{self.get_service_type_display()} ({self.start_date}—{self.end_date})"
+        return (
+            f"{self.get_service_type_display()}"
+            f" ({self.start_date}—{self.end_date})"
+        )
