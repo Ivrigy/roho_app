@@ -57,3 +57,4 @@ def edit_booking(request, booking_id):
         'form': form,
         'booking': booking
     })
+    
