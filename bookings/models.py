@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.utils import timezone
 from django.utils.text import slugify
 from django.core.exceptions import ValidationError
+import uuid
 
 
 SERVICE_CHOICES = [
@@ -39,7 +40,9 @@ class Booking(models.Model):
 
     def save(self, *args, **kwargs):
         if not self.slug:
-            self.slug = slugify(f"{self.name}-{self.start_date}")
+            base_slug = slugify(f"{self.name}-{self.start_date}")
+            unique_id = uuid.uuid4().hex[:6]
+            self.slug = f"{base_slug}-{unique_id}"
         super().save(*args, **kwargs)
 
     def can_edit(self):
