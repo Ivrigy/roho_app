@@ -6,8 +6,11 @@
 {% for booking in bookings %}
 <div class="card bg-dark text-white mb-3 p-3">
     <h5 class="card-title">{{ booking.event_name }}</h5>
-    <p class="card-text">{{ booking.service_type }} | {{ booking.start_date }} to {{ booking.end_date }}</p>
-    
+    <p class="card-text">
+        {{ booking.service_type }} | {{ booking.start_date }} to {{ booking.end_date }}<br>
+        {{ booking.additional_notes }}
+      </p>
+      
     <div class="d-flex gap-2">
         <a href="{% url 'edit_booking' booking.id %}" class="btn btn-success">Edit</a>
         <a href="{% url 'delete_booking' booking.id %}" class="btn btn-danger">Delete</a>
