@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.utils import timezone
 from django.utils.text import slugify
 from django.core.exceptions import ValidationError
+from django.db.models import Q, F
 import uuid
 
 
@@ -26,7 +27,7 @@ class Booking(models.Model):
     event_name = models.CharField(max_length=100)
     service_type = models.CharField(
         max_length=20,
-        choices=SERVICE_CHOICES
+        choices=SERVICE_CHOICES,
     )
     number_of_people = models.PositiveIntegerField()
     hours = models.PositiveIntegerField()
@@ -37,6 +38,16 @@ class Booking(models.Model):
     slug = models.SlugField(unique=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    def clean(self):
+        if (
+            self.start_date
+            and self.end_date
+            and self.end_date < self.start_date
+        ):
+            raise ValidationError(
+                "End date must be on or after the start date."
+            )
 
     def save(self, *args, **kwargs):
         if not self.slug:
@@ -52,6 +63,14 @@ class Booking(models.Model):
 
     def __str__(self):
         return (
-            f"{self.get_service_type_display()}"
-            f" ({self.start_date}—{self.end_date})"
+            f"{self.get_service_type_display()} "
+            f"({self.start_date}—{self.end_date})"
         )
+
+    class Meta:
+        constraints = [
+            models.CheckConstraint(
+                check=Q(end_date__gte=F("start_date")),
+                name="booking_end_on_or_after_start",
+            )
+        ]
