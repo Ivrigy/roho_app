@@ -24,13 +24,16 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 SECRET_KEY = os.environ.get("SECRET_KEY")
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = [
     ".herokuapp.com",
     "127.0.0.1",
 ]
 
+CSRF_TRUSTED_ORIGINS = [
+    "https://roho-3cab264b3559.herokuapp.com",
+]
 
 INSTALLED_APPS = [
     "django.contrib.admin",
