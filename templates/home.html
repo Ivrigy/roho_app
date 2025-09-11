@@ -3,19 +3,20 @@
 
 {% block content %}
 
-<!--Heading above hero-->
+<!-- Heading above hero -->
 <section class="text-center my-5">
   <h2 class="text-white fw-bold">
     LOOKING FOR SHARP, STYLISH AND UNSHAKEABLY RELIABLE STAFF?
   </h2>
 </section>
-<!--Hero image-->
+
+<!-- Hero image section with hidden heading for semantics -->
 <section class="text-center mb-5">
+  <h2 class="visually-hidden">Introduction</h2>
   <img
     src="{% static 'images/intro-pic.png' %}"
-    alt="Booking Intro Graphic"
-    class="img-fluid w-100"
-  />
+    alt=""
+    class="img-fluid w-100">
 </section>
 
 <h3 class="text-center text-white mb-4">Choose the category to book:</h3>
@@ -29,8 +30,7 @@
         <img
           src="{% static 'images/power-hands.jpg' %}"
           class="card-img-top"
-          alt="Power Hands"
-        />
+          alt="Power Hands">
         <div class="card-body">
           <h4 class="h5 card-title">POWER HANDS</h4>
           <p class="card-text">
@@ -47,8 +47,7 @@
         <img
           src="{% static 'images/security.jpg' %}"
           class="card-img-top"
-          alt="Security"
-        />
+          alt="Security">
         <div class="card-body">
           <h4 class="h5 card-title">SECURITY</h4>
           <p class="card-text">
@@ -65,8 +64,7 @@
         <img
           src="{% static 'images/promoters.jpg' %}"
           class="card-img-top"
-          alt="Promoters"
-        />
+          alt="Promoters">
         <div class="card-body">
           <h4 class="h5 card-title">PROMOTERS</h4>
           <p class="card-text">
