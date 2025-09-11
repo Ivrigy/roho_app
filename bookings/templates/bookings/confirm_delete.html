@@ -1,13 +1,21 @@
 {% extends "base.html" %}
+
+{% block title %}Delete booking – Roho{% endblock %}
+
 {% block content %}
+<section class="container text-white my-5" aria-labelledby="confirm-delete-heading">
+  <h2 id="confirm-delete-heading" class="mb-4">
+    Are you sure you want to delete “{{ booking.event_name }}”?
+  </h2>
 
-<div class="container text-white">
-    <h2>Are you sure you want to delete "{{ booking.event_name }}"?</h2>
-    <form method="POST">
-        {% csrf_token %}
-        <button type="submit" class="btn btn-danger">Yes, delete</button>
-        <a href="{% url 'my_bookings' %}" class="btn btn-secondary">Cancel</a>
-    </form>
-</div>
-
+  <form method="post" class="d-flex gap-2">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger" autofocus>
+      Yes, delete
+    </button>
+    <a href="{% url 'my_bookings' %}" class="btn btn-secondary">
+      Cancel
+    </a>
+  </form>
+</section>
 {% endblock %}
