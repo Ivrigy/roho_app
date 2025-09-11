@@ -1,31 +1,43 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% block title %}Edit Booking – Roho{% endblock %}
+
 {% block content %}
 <div class="container my-5">
-  <h2 class="text-white text-center mb-4">Edit Booking</h2>
+  <h2 class="text-white text-center mb-4">Edit booking</h2>
 
-  <form method="POST" novalidate>
+  <form method="post" novalidate>
     {% csrf_token %}
 
     {% if form.non_field_errors %}
       <div class="alert alert-danger">{{ form.non_field_errors }}</div>
     {% endif %}
 
+    {# render hidden fields first (e.g., csrf, ids) #}
+    {% for hidden in form.hidden_fields %}
+      {{ hidden }}
+    {% endfor %}
+
     <div class="row">
-      {% for field in form %}
+      {% for field in form.visible_fields %}
+        {% with help_id=field.id_for_label|add:"_help" %}
         <div class="col-md-6 mb-3">
           <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
-          {{ field }}
+          {{ field.as_widget|add:' aria-describedby="'|add:help_id|add:'"'|safe }}
+          {% if field.help_text %}
+            <div id="{{ help_id }}" class="form-text">{{ field.help_text|safe }}</div>
+          {% endif %}
           {% if field.errors %}
             <div class="text-danger small">{{ field.errors }}</div>
           {% endif %}
         </div>
+        {% endwith %}
       {% endfor %}
     </div>
 
-    <div class="text-center mt-4">
-      <button type="submit" class="btn roho-submit">Update Booking</button>
+    <div class="text-center mt-4 d-flex gap-2 justify-content-center">
+      <button type="submit" class="btn roho-submit">Update booking</button>
       <a href="{% url 'my_bookings' %}" class="btn btn-secondary">Cancel</a>
     </div>
   </form>
@@ -38,9 +50,7 @@
     if (!start || !end) return;
     if (start.value) {
       end.min = start.value;
-      if (end.value && end.value < start.value) {
-        end.value = start.value;
-      }
+      if (end.value && end.value < start.value) end.value = start.value;
     }
   }
   start?.addEventListener("change", syncEndMin);
