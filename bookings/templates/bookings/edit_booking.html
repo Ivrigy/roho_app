@@ -14,7 +14,7 @@
       <div class="alert alert-danger">{{ form.non_field_errors }}</div>
     {% endif %}
 
-    {# render hidden fields first (e.g., csrf, ids) #}
+    {# hidden fields (ids, csrf already printed above) #}
     {% for hidden in form.hidden_fields %}
       {{ hidden }}
     {% endfor %}
@@ -24,12 +24,16 @@
         {% with help_id=field.id_for_label|add:"_help" %}
         <div class="col-md-6 mb-3">
           <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
-          {{ field.as_widget|add:' aria-describedby="'|add:help_id|add:'"'|safe }}
+
+          {# ✅ inject aria-describedby as a real attribute on the input #}
+          {{ field.as_widget(attrs={"aria-describedby": help_id}) }}
+
           {% if field.help_text %}
             <div id="{{ help_id }}" class="form-text">{{ field.help_text|safe }}</div>
           {% endif %}
+
           {% if field.errors %}
-            <div class="text-danger small">{{ field.errors }}</div>
+            <div class="invalid-feedback d-block">{{ field.errors }}</div>
           {% endif %}
         </div>
         {% endwith %}
