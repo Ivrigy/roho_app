@@ -1,34 +1,35 @@
 # Roho Booking Service
 
 A sass-free booking system for event agencies, art directors, galleries, fairs — and anyone else who needs to *hire awesome people* without the carrier pigeons, smoke signals, or frantic last-minute phone calls.
+
 ![Intro](static/images/docs/responsive.png)
 
 ## Table of Contents
-- [Overview](#overview)  
-- [UX Design](#ux-design) 
-- [Agile Methodologies](#agile-methodologies) 
-- [Features](#features)   
-- [User Flows](#user-flows)  
-- [Pages](#pages)  
-- [Technologies Used](#technologies-used) 
-- [Testing](#testing) 
-- [Deployment](#deployment) 
-- [Credits](#credits) 
+- [Overview](#overview)
+- [UX Design](#ux-design)
+- [Agile Methodology](#agile-methodology)
+- [Features](#features)
+- [User Flows](#user-flows)
+- [Pages](#pages)
+- [Technologies Used](#technologies-used)
+- [Testing](#testing)
+- [Deployment](#deployment)
+- [Credits](#credits)
 
 ## Overview
 
-Roho Booking Service is the secret weapon for event managers and creative agencies who need to book staff — and book them *fast*. Whether you’re curating a gallery opening, orchestrating a fair, or just trying to fill seats at your next big show, Roho’s got your back. Think of it as Tinder for top-notch event staff (minus the awkward swiping).
+Roho Booking Service is the secret weapon for event managers and creative agencies who need to book staff — and book them *fast*. Whether you’re curating a gallery opening, orchestrating a fair, or just trying to staff your next big show, Roho’s got your back. Think of it as Tinder for top-notch event staff (minus the awkward swiping).
 
-**Target Audience:**  
-- 🏢 Agencies that organize events  
-- 🎨 Art directors and gallery curators  
-- 🎉 Fair and festival coordinators  
-- ‍💼 Anyone who has ever said, “Why is booking people so complicated?”  
+**Target audience**
+- 🏢 Agencies that organize events
+- 🎨 Art directors and gallery curators
+- 🎉 Fair and festival coordinators
+- 💼 Anyone who has ever said, “Why is booking people so complicated?”
 
 ## UX Design
 
 ### Strategy plane
-I originally designed Roho as a full talent marketplace with multi-service booking, profiles, ratings, messaging, and availability calendars. Because of the timeline, I applied Agile scoping and shipped an MVP that solves the essential job end-to-end: discover the service, submit a booking, review or edit or delete it, and let an admin triage entries. The larger concept stays on the roadmap.
+I originally designed Roho as a full talent marketplace with multi-service booking, profiles, ratings, messaging, and availability calendars. Because of the timeline, I applied Agile scoping and shipped an MVP that solves the essential job end-to-end: discover the service, submit a booking, review/edit/delete it, and let an admin triage entries. The larger concept stays on the roadmap.
 
 ### Site goals
 - Deliver a fast, low-friction path from landing to confirmed booking
@@ -38,454 +39,445 @@ I originally designed Roho as a full talent marketplace with multi-service booki
 - Leave room for growth without redesigning the core
 
 ### Scope and Agile decisions (MVP)
-- Kept: authentication, Offer → Booking flow, My Bookings with CRUD, basic admin visibility
-- Deferred: staff profiles, messaging, calendar availability, quotes, multi-tenant agencies
-- Process: very small user stories with acceptance criteria, Kanban flow, demoable increments
+- **Kept:** authentication, Offer → Booking flow, My Bookings with CRUD, basic admin visibility  
+- **Deferred:** staff profiles, messaging, calendar availability, quotes, multi-tenant agencies  
+- **Process:** small user stories with acceptance criteria, Kanban flow, demoable increments
 
-### User Stories
+### User stories
 
-### Admin / business owner
+**Admin / business owner**
 - As an admin, I want to view all bookings so that I can manage schedules and data integrity.
 - As an admin, I want to edit or delete any booking so that I can correct mistakes or remove duplicates.
 - As an admin, I want to manage service categories so that I can adjust the offer.
 
-### Visitor / guest
+**Visitor / guest**
 - As a visitor, I want to understand the service at a glance so that I know if this solves my problem.
-- As a visitor, I want to see clear navigation to Book Now and Register so that I can start immediately.
+- As a visitor, I want clear navigation to Book Now and Register so that I can start immediately.
 - As a visitor, I want responsive pages on mobile, tablet, and desktop so that I can use the site anywhere.
 
-### New user
+**New user**
 - As a new user, I want to register an account so that I can submit bookings.
 - As a new user, I want helpful form hints and validation so that I can complete registration without confusion.
 
-### Logged-in user
+**Logged-in user**
 - As a user, I want to log in and out reliably so that my account stays secure.
 - As a user, I want to choose a service from the Offer page and go straight to the correct booking form so that I don’t get lost.
 - As a user, I want to submit a booking with event details, dates, and number of people so that the team can staff my event.
 - As a user, I want the form to prevent past dates and enforce start before end so that my booking is valid.
 - As a user, I want a clear confirmation after submitting so that I know it worked.
-- As a user, I want to see my bookings in My Bookings so that I can review the status at any time.
-- As a user, I want to edit an existing booking with the form prefilled so that I can fix small mistakes quickly.
+- As a user, I want to see my bookings in My Bookings so that I can review them at any time.
+- As a user, I want to edit an existing booking with the form pre-filled so that I can fix small mistakes quickly.
 - As a user, I want to delete a booking I no longer need so that I don’t clutter the system.
 
 ### UX research and market scan
-  
-I wanted to understand how event-staffing and booking platforms set expectations: what fields they ask for, how fast you can submit a request, how they communicate availability and pricing, and where users typically drop off.
+I compared event-staffing and booking platforms to see which fields they request, how fast a user can submit, how availability/pricing is communicated, and where drop-offs happen.
 
-sample and method  
-I did a comparative teardown of agency sites, self-serve booking tools, and marketplace job boards across Germany/EU/US. I captured flows, forms, copy, and visual patterns, then tagged everything by friction level, clarity, and mobile behavior.  
+**Sample and method**  
+Comparative teardown of agency sites, self-serve tools, and marketplace job boards across DE/EU/US. I captured flows, forms, copy, and interface patterns, then tagged items by friction level, clarity, and mobile behavior.
+
 ![Competitive scan](static/images/docs/comparison.png)
 
-key patterns I saw
-- most “contact us” flows ask for too many fields, especially before trust is built
-- mobile usability varies a lot; some forms are cramped and error handling is vague
+**Key patterns**
+- Many “contact us” flows ask for too many fields before trust is built.
+- Mobile usability varies; some forms are cramped and error handling is vague.
 
-what I adopted
-- one clear path: Offer → Booking form → confirmation
-- minimal required fields with strong hints and inline validation
+**What I adopted**
+- One clear path: Offer → Booking form → confirmation
+- Minimal required fields with strong hints and inline validation
 
 ### Information architecture
-- Navbar: Home • Book Now • My Bookings • Login or Logout
-- Primary flows:
-  1) Offer → Booking form → confirmation
-  2) My Bookings → edit or delete
-  3) Admin at /admin → review and clean up
-- Copy: short action labels and one clear CTA per section
+- **Navbar:** Home • Book Now • My Bookings • Login/Logout
+- **Primary flows:**
+  1. Offer → Booking form → confirmation  
+  2. My Bookings → Edit/Delete  
+  3. Admin at `/admin/` → review and clean up
+- **Copy:** short action labels and one clear CTA per section
 
 ### Wireframes and design evolution
 - Wireframes: a simple path from Home to Book to My Bookings with centered forms and visible CTAs  
-  ![Wireframes](/static/images/docs/wireframes.png)
-
+  ![Wireframes](static/images/docs/wireframes.png)
 - Early MVP screens: Offer cards, Booking form, Sign-up/Sign-in, and My Bookings list  
-  ![MVP Screens](/static/images/docs/Booking.png)
-
+  ![MVP Screens](static/images/docs/Booking.png)
 - First large landing concept (pre-scope cut): editorial hero blocks, multiple service areas, and a banner callout  
-  ![Initial Landing Concept](/static/images/docs/rohohomepage.png)
+  ![Initial Landing Concept](static/images/docs/rohohomepage.png)
 
 I trimmed the large landing to keep speed and clarity for the MVP while keeping the visual language ready for future expansion.
 
 ### Visual design and color system
+A modern, high-contrast palette so actions are easy to notice and the interface works well for users who need more contrast.
 
-I chose a modern, high-contrast palette so actions are easy to notice and the interface works well for users who need more contrast.
-- Pitch black: application background for maximum contrast
-- White: primary text on dark
-- Electric or mint green: primary CTAs, focus rings, active accents
-- Soft violet: secondary accents, icons, card tints
-- Brand accent: highlights, badges, emphasis states
+- Pitch black: app background for maximum contrast  
+- White: primary text on dark  
+- Electric/mint green: primary CTAs, focus rings, active accents  
+- Soft violet: secondary accents, icons, card tints  
+- Brand accent: highlights and emphasis states  
 - Dark greys: elevated panels and form surfaces over black
 
-Contrast and accessibility
-- Body text on dark meets WCAG 2.2 AA targets; large CTAs exceed minimums
-- Focus rings are clearly visible on all interactive elements
-- Icons are always paired with text or an aria-label to avoid color-only cues
+**Contrast and accessibility**
+- Body text on dark meets WCAG 2.2 AA; large CTAs exceed minimums.
+- Focus rings are clearly visible on all interactive elements.
+- Icons are paired with text or `aria-label` so color alone isn’t the cue.
 
 ### Interaction and validation
-- Date pickers block past dates and enforce start not after end on both client and server
-- Required fields are validated inline and errors are announced to assistive tech
-- After submit, the confirmation keeps context and offers a clear next step
+- Date pickers block past dates and enforce start ≤ end on client and server.
+- Required fields validate inline; errors are clear and actionable.
+- After submit, the confirmation keeps context and offers a next step.
 
-## Agile methodology
-I worked in a simple Kanban flow (To do → In progress → Done) using GitHub Issues and a GitHub Projects board. I kept stories small with acceptance criteria, merged related work into epics, and aimed for a fast MVP, then iteration.
+## Agile Methodology
 
-process
-- planned user stories on the board (To do → In progress → Done)
-- wrote acceptance criteria first, then adjusted tasks after the first implementation spike
-- shipped in short increments to Heroku and noted a tiny retro each time (keep, change, try)
-- used MoSCoW to keep scope honest
+I worked in a simple Kanban flow (To do → In progress → Done) using GitHub Issues and a GitHub Projects board. I kept stories small with acceptance criteria, grouped related work into epics, and aimed for a fast MVP followed by iteration.
 
-epics I used
-- auth and sessions
-- booking flow (offer cards, form, validation, confirmation)
-- my bookings (list, edit, delete)
-- admin operations (manage bookings via Django admin, cleanup, light exports)
-- accessibility and performance (contrast, focus rings, asset sizing)
-- platform setup and deployment (installation, project setup, Heroku deploy)
-- foundational UI (home/landing page and navigation)
+**Process**
+- Planned user stories on the board (To do → In progress → Done)
+- Wrote acceptance criteria first; adjusted tasks after the first spike
+- Shipped in short increments to Heroku with tiny retros (keep/change/try)
+- Used MoSCoW to keep scope honest
 
-example user story and acceptance criteria
-- as a user I can select a booking service, fill the form, and send my inquiry so that I can receive the service I need
-  - acceptance criterion 1: the booking offer is visible and reachable
-  - acceptance criterion 2: the form validates and submits correctly
-  - acceptance criterion 3: after submit, the booking appears in My Bookings
+**Epics**
+- Auth and sessions  
+- Booking flow (offer cards, form, validation, confirmation)  
+- My bookings (list, edit, delete)  
+- Admin operations (manage via Django admin, cleanup, light exports)  
+- Accessibility and performance (contrast, focus rings, asset sizing)  
+- Platform setup and deployment (installation, project setup, Heroku deploy)  
+- Foundational UI (home/landing and navigation)
 
-prioritisation (MoSCoW)
-- must have: authentication, Offer → Booking flow, My Bookings CRUD, basic admin visibility
-- should have: category management in admin, clearer field hints, high-contrast theme and keyboard navigation
-- could have: quick quotes, saved organizations, better exports, richer empty states
-- won’t have in this release: messaging, staff profiles/ratings, availability calendars, multi-tenant features
+**Example user story**
+- As a user I can select a booking service, fill the form, and send my inquiry so that I can receive the service I need.  
+  - Criterion 1: the booking offer is visible and reachable  
+  - Criterion 2: the form validates and submits correctly  
+  - Criterion 3: after submit, the booking appears in My Bookings
 
+**Prioritization (MoSCoW)**
+- **Must have:** authentication, Offer → Booking flow, My Bookings CRUD, admin visibility  
+- **Should have:** category management in admin, clearer field hints, high-contrast theme and keyboard navigation  
+- **Could have:** quick quotes, saved organizations, better exports, richer empty states  
+- **Won’t have (this release):** messaging, staff profiles/ratings, availability calendars, multi-tenant features
 
-I track work on a GitHub Projects Kanban here: [roho_project – Kanban board](https://github.com/users/Ivrigy/projects/3/views/1)
+I track work on a GitHub Projects Kanban here:  
+[roho_project – Kanban board](https://github.com/users/Ivrigy/projects/3/views/1)
 
 ## Features
 
-### 🔐 Authentication  
-- **User sign-up / log-in / log-out**  
-- Passwords safely tucked away behind Django’s fortress walls  
+### 🔐 Authentication
+- User sign-up / log-in / log-out
+- Passwords stored securely using Django auth
 
-### 📝 Booking Service  
-- Fill out a slick, no-drama booking form  
-- Pick dates, times, and the number of staff needed  
-- A **Submit** button that actually works (we promise)  
+### 📝 Booking Service
+- Low-friction booking form
+- Pick dates, times, and number of staff
+- A submit flow that actually works
 
-### 🔄 CRUD Operations  
-- **Create** new bookings (duh)  
-- **Read** your upcoming “glorious staff deployments”  
-- **Update** mind-blowing changes on the fly  
-- **Delete** — because sometimes plans change (or budget cuts happen)  
+### 🔄 CRUD Operations
+- Create bookings
+- Read your upcoming “staff deployments”
+- Update details quickly
+- Delete when plans change
 
-### 🎛️ Admin Dashboard  
-- Superusers can view and manage **all** bookings  
-- Cull duplicates, banish inappropriate entries, or just admire your own organizational prowess  
-
+### 🎛️ Admin Dashboard
+- Superusers can view and manage all bookings
+- Remove duplicates and keep data clean
 
 ## User Flows
 
 1. **User A – Newbie**  
-   - Visits homepage → registers (quick as a flash) → logs in  
-   - Clicks the “Book” card → fills in the booking request → 🎉 Confirmed!  
-   - Edits or deletes bookings on the **My Bookings** page → logs out  
-
-2. **User B – The Return Visitor**  
-   - Logs in → lands on **My Bookings** (because we love you)  
-   - Edits or deletes an existing booking → logs out  
-
-3. **Admin User – The Overlord**  
-   - Logs in to `/admin/` → surveys all bookings at a glance  
-   - Deletes duplicates, flags shady requests, or just sips coffee while watching it all  
+   Visits homepage → registers → logs in → clicks a Book card → completes the booking → edits/deletes later in **My Bookings** → logs out
+2. **User B – Return visitor**  
+   Logs in → lands on **My Bookings** → edits or deletes an existing booking → logs out
+3. **Admin**  
+   Logs in to `/admin/` → surveys all bookings → cleans up entries
 
 ## Pages
 
-### 1. Intro / Homepage  
+### 1) Intro / Homepage
 ![Intro](static/images/docs/intro.png)
-- **Where you land:** Bold header asks, “LOOKING FOR SHARP, STYLISH, AND UNSHAKABLY RELIABLE STAFF?”  
-- **Quick links:**  
-  - **Home** | **Book Now** | **My Bookings** | **Logout** (once you’re in)  
-- **Why it rocks:** You see the pitch, you see the logo, you know exactly where to click. No scrolling safari required.
 
-### 2. Service Categories (“Offer” Page)  
-![Choose Category](static/images/docs/offer.png) 
-- **URL/Shortcut:** Click **Book Now** → land here instantly.  
-- **Cards on display:**  
-  - **POWER HANDS** (💪 heavy-lifting heroes)  
-  - **SECURITY** (🛡 keep the drama off your premises)  
-  - **PROMOTERS** (📣 hype machines on demand)  
-- **CTA:** Each card has its own **Book** button — click one and BOOM, you’re off to the form.
+- Bold header asks, “LOOKING FOR SHARP, STYLISH, AND UNSHAKABLY RELIABLE STAFF?”
+- Quick links: **Home** | **Book Now** | **My Bookings** | **Logout** (once logged in)
+- You see the pitch and the paths; no endless scrolling required.
 
-### 3. Login Page  
-![Login Page](static/images/docs/login.png) 
-- **URL/Shortcut:** Navbar → **Login**  
-- **Fields:** Username, Password  
-- **Magic moment:** Hit **Enter** (that glowing green button) and you’re in.  
-- **Pro tip:** If you forget your creds, you *may* have to create a new account... or consult your password manager.
+### 2) Service Categories (“Offer”)
+![Choose Category](static/images/docs/offer.png)
 
-### 4. Sign Up Page  
-![Sign Up Page](static/images/docs/signup.png) 
-- **URL/Shortcut:** Navbar → **Register**  
-- **Fields:**  
-  - Username (150-char limit, no emojis — sorry)  
-  - Password + confirmation (must be > 8 chars, not “12345678”)  
-- **UX treat:** Real-time hints below each field keep you honest. No post-submit surprises!
+- Shortcut: click **Book Now** to land here instantly
+- Cards: **POWER HANDS** (💪), **SECURITY** (🛡), **PROMOTERS** (📣)
+- Each card has a **Book** button that jumps to the form
 
-### 5. Book a Service (Booking Form)  
+### 3) Login
+![Login](static/images/docs/login.png)
+
+- Username + Password
+- Hit Enter and you’re in (or use your password manager)
+
+### 4) Sign Up
+![Sign Up](static/images/docs/signup.png)
+
+- Username, Password, Password confirmation  
+- Hints below each field; no surprises after submit
+
+### 5) Book a Service (Form)
 ![Booking Form](static/images/docs/bookingform.png)
-- **URL/Shortcut:**  
-  - From **Offer** card **Book** → direct jump  
-  - Or Navbar → **Book Now**  
-- **Form bits:**  
-  - Name, Email, Company, Event Name  
-  - Service Type dropdown (what you chose on the Offer page)  
-  - Number of People, Hours, Budget  
-  - Start Date/End Date (date picker prevents past dates)  
-  - Additional Notes (“We need coffee ASAP!”)  
-- **Validation shortcuts:**  
-  - 🔒 Start/End date locked to the future  
-  - 🔢 “Number of People” ≥ 1  
-  - ✏️ All required fields are enforced
 
-### 6. My Bookings  
-![My Bookings](static/images/docs/mybookings.png)  
-- **URL/Shortcut:** Navbar → **My Bookings**  
-- **What you see:** A dark-mode list of your gigs — each card shows:  
-  - Event title & service type  
-  - Dates & notes  
-  - **Edit** (green) and **Delete** (red) buttons  
-- **One-click fixes:**  
-  - **Edit** reloads the form pre-filled  
-  - **Delete** vanishes unwanted bookings faster than your inbox spam
+- From **Offer → Book** or Navbar → **Book Now**
+- Fields: Name, Email, Company, Event Name, Service Type, People, Hours, Budget, Start/End dates, Notes
+- Validation: no past dates, People ≥ 1, required fields enforced
 
-### 7. Edit Booking  
-*(Same form as “Book a Service,” but with your old info pre-filled. No extra screenshots needed — just you, channeling your inner event-planner zen.)*
+### 6) My Bookings
+![My Bookings](static/images/docs/mybookings.png)
 
-### 8. Admin Panel  
-*(Not shown here, but imagine the ultimate CRUD dashboard at `/admin/` where you can view, edit, or obliterate any booking. Capes optional.)*
+- Dark-mode list of your gigs: title, service, dates, notes
+- **Edit** and **Delete** with one click
 
-## Technologies used
+### 7) Edit Booking
+Same form as Book a Service with pre-filled values.
 
-languages
+### 8) Admin Panel
+At `/admin/` — full CRUD on bookings.
+
+## Technologies Used
+
+**Languages**
 - HTML5
 - CSS3
 - JavaScript (ES6)
 - Python 3.12
 
-frameworks and libraries
-- Django 5.2 (templates, built-in auth, forms, admin)
-- Bootstrap 5 (responsive layout and components)
-- Gunicorn (WSGI server for production on Heroku)
-- WhiteNoise (serving static files in production)
+**Frameworks & libraries**
+- Django 5.2 (templates, auth, forms, admin)
+- Bootstrap 5
+- Gunicorn (WSGI server)
+- WhiteNoise (static files)
 - psycopg2-binary (PostgreSQL adapter)
 
-database
-- PostgreSQL in production
-- SQLite for local development
+**Database**
+- PostgreSQL (production)
+- SQLite (local development)
 
-hosting and deployment
-- Heroku (app hosting, config vars, logs)
+**Hosting & deployment**
+- Heroku (hosting, config vars, logs)
 - Heroku CLI for deploys
 
-version control and project management
-- Git and GitHub (source control, pull requests)
-- GitHub Projects Kanban board for user stories and epics  
-  roho_project – Kanban board: https://github.com/users/Ivrigy/projects/3/views/1
+**Version control & PM**
+- Git and GitHub
+- GitHub Projects Kanban for stories and epics  
+  Kanban: https://github.com/users/Ivrigy/projects/3/views/1
 
-quality and testing
-- flake8 (Python linting in VS Code)
+**Quality & testing**
+- flake8 (Python linting)
 - JSHint (JavaScript linting)
-- W3C Markup Validator and W3C CSS Validator
-- Lighthouse and axe DevTools for accessibility and performance checks
+- W3C Markup Validator & W3C CSS Validator
+- Lighthouse and axe DevTools
 
-developer tools
+**Developer tools**
 - VS Code
 - Chrome DevTools
-- Responsively App (responsive previews)
-- GitHub Actions (optional, for CI)
-- environment variables via .env locally and Heroku config vars
+- Responsively App
+- Environment variables via `.env` locally and Heroku config vars
 
-design and assets
+**Design & assets**
 - Figma (wireframes and UI)
 - Google Fonts
-- image optimization tools (e.g., TinyPNG) when needed
-
+- Image optimization (e.g., TinyPNG) as needed
 
 ## Testing
 
-Testing was woven into every step of Roho’s development — because “it works on my machine” isn’t a QA strategy. While we didn’t write Django `TestCase` unit tests (yet), **manual testing drove the project to rock-solid reliability**.
+I approached testing in layers: validators and linters → manual functional tests (happy path + edge cases) → accessibility checks → performance audits → cross-browser/device sanity checks. I recorded defects and fixes, and I kept the validators clean on the deployed build.
 
-### Test Environment
+### Test environments
 
-Local: macOS, Python 3.12, Django 5.2, Chrome & Safari
+- **Local**: macOS, Python 3.12, Django 5.2, Chrome 139, Safari 17  
+- **Staging/Prod**: Heroku (Gunicorn + WhiteNoise, PostgreSQL)  
+- **Branching**: feature branches → PRs after lint/validators pass
 
-Prod: Heroku (Gunicorn + WhiteNoise)
+---
 
-Branching: feature branches → PRs after passing lint & checks
+### 1) Static analysis & validators
 
-### Manual Testing Overview
+**Python (PEP 8)**
+- Tools: `flake8` + VS Code linter  
+- Checks: max line length, naming, whitespace/indentation, unused imports/vars  
+![Python lint](static/images/docs/testingpy.png)
 
-- **Authentication Workflow**  
-  - Registration, login, logout, and session persistence  
-  - Navbar links updating correctly for logged-in vs. guest users  
-- **Booking System**  
-  - Create, read, update, and delete bookings  
-  - Date-picker validation (no time machines allowed — past dates are blocked)  
-- **Form & UX Validation**  
-  - JavaScript checks for required fields, valid staff counts, and future dates  
-  - Backend re-validation in Django to catch anything that slipped past the client  
-- **Navigation & Layout**  
-  - Consistent header/footer across all pages  
-  - Responsive behavior on desktop, tablet, and (lightning-fast) mobile
-Core User Flows
+**JavaScript (ES6+)**
+- Tool: **JSHint** (`esversion: 6`)  
+- Checks: undefined vars, missing semicolons where required, control flow
 
-Register / Login / Logout — forms render with Bootstrap, errors shown inline, login redirects correctly.
+**HTML & CSS**
+- **W3C Nu HTML Checker**: fixed all errors and actionable warnings
+  - Added `<!DOCTYPE html>` and `<html lang="en">` in `base.html`
+  - Ensured a single `<title>` in `<head>`
+  - Replaced decorative `<section>` with `<div>` or added visually hidden `<h2>` to satisfy “section needs heading”
+  - Removed trailing slashes on void elements (`<img>`, `<meta>`, `<link>`)
+  - Fixed Django template output that the validator saw as raw `{% ... %}` by validating the deployed pages, not raw templates
+  - Corrected `<time datetime="...">` to valid ISO dates where used or replaced with plain text
+  - Removed inline `aria-describedby="id_*_help"` strings that accidentally rendered as text
+  - Ensured all anchor `href` values are real URLs on the rendered page, not template tags
+  - Example warnings addressed:  
+    ![Nu HTML warnings](static/images/docs/warning.png)  
+    ![Nu HTML after](static/images/docs/nuaftercheck.png)
 
-Book a Service — required fields enforced; start_date cannot be in the past; end_date must be on/after start_date.
+- **W3C CSS Validator**: zero errors after cleanup  
+  ![CSS validation](static/images/docs/cssvalidation.png)
 
-Edit Booking — prefilled values; validation still enforced on update.
+---
 
-My Bookings — lists only the signed-in user’s bookings; Edit/Delete work as expected.
+### 2) Functional manual testing
 
-Validation & Error States
+I tested each feature on local and on the deployed Heroku app. Below are the core scenarios with pass criteria.
 
-Server-side errors surfaced below fields; clear copy for date rules and required inputs.
+**Authentication**
+- Register → success message, auto-login (where configured) or redirect to Login → Login → Logout → sessions expire correctly
+- Nav changes with auth state (Login/Logout/My Bookings visibility)
 
+**Booking flow**
+- Offer → Book form preselects/keeps context
+- **Validation rules**
+  - Required fields enforced with clear inline errors
+  - `start_date` cannot be in the past (HTML `min` + server validation)
+  - `end_date` must be same day or after `start_date`
+  - People ≥ 1; Hours ≥ 1; Budget accepts numbers only
+- Successful submit shows confirmation and the booking appears in **My Bookings**
 
-Access Control
+**My Bookings**
+- Only the signed-in user’s bookings are shown
+- **Edit** opens the same form with prefilled data; validation still enforced
+- **Delete** shows a confirm screen and removes only the selected booking
 
-Anonymous users attempting to access protected pages are redirected to the Login page.
+**Admin**
+- `/admin/` lists bookings; staff can search, edit, and delete
+- Category/offer list manageable via Django admin
 
-Staff-only actions are restricted to the Django admin.
+**Negative/edge cases**
+- Direct access to protected URLs when logged out → redirected to Login
+- Tampering with IDs in edit/delete URLs → 404/permission denied for other users’ objects
+- Submitting with JS disabled → server-side validation still blocks bad input
+- Large notes field; overly long company names/emails → form errors as expected
 
-Navigation & Links
+**Test matrix (selected)**
 
-Header/nav consistent; all internal links route correctly; external links open in a new tab with rel="noopener".
+| Area        | Scenario           | Steps                                  | Expected                                       | Result |
+|-------------|--------------------|----------------------------------------|-----------------------------------------------|--------|
+| Accounts    | Register           | Fill valid form → Submit                | User created, redirect/msg                    | ✅     |
+| Accounts    | Login              | Enter valid creds                       | Redirect to prior/landing                     | ✅     |
+| Bookings    | Create             | Fill all fields                         | Booking saved, visible in My Bookings         | ✅     |
+| Bookings    | Past date          | `start_date` = yesterday                | Error “Cannot book past dates.”               | ✅     |
+| Bookings    | Order rule         | `end_date` < `start_date`               | Error “End date must be on or after …”        | ✅     |
+| Bookings    | Edit               | Change notes/dates                      | Updates persist                               | ✅     |
+| My Bookings | Ownership          | User A tries to view User B’s booking   | Not visible / blocked                         | ✅     |
+| Validation  | HTML (Nu)          | Validate deployed pages                 | 0 errors, warnings addressed                  | ✅     |
+| Validation  | CSS (Jigsaw)       | Validate stylesheet                     | 0 errors                                      | ✅     |
 
-Console
+---
 
-No client-side errors during normal flows.
+### 3) Accessibility
 
-Historical: a brief production 500 on /accounts/register/ during early deploy (fixed — see below).
+**Keyboard**
+- All controls reachable in logical order; visible focus outlines (Bootstrap + custom high-contrast focus ring)
+- Skip repetitive nav by predictable structure; no keyboard traps
 
+**Semantics**
+- One `<h1>` per page; meaningful `<h2>` structure (visually hidden where needed)
+- Form labels bound via `for`/`id` pairs; helpful error text appears next to fields
 
-### 🐍 Python (PEP 8)
-- **Linting:** Used **flake8** and VS Code’s built-in linter to enforce style.  
-- **Checks performed:**  
-  - Maximum line length  
-  - Proper function/class names (snake_case & CamelCase)  
-  - Consistent indentation and whitespace  
-  - Removal of unused imports and variables
+**Color/contrast**
+- Text and interactive elements meet **WCAG 2.2 AA** on dark background
 
-  ![Testing](static/images/docs/testingpy.png)  
+**Automated checks**
+- **Lighthouse** (A11y category) and **axe DevTools**: no critical issues
 
-### 📜 JavaScript (ES6+)
-- **Validation:** Ran **JSHint** (configured with `esversion: 6`) on all custom scripts.  
-- **Checks performed:**  
-  - No undefined variables  
-  - Required semicolons (where needed)  
-  - Logical flow and syntax correctness  
+---
 
-### 🌐 HTML5 & CSS3
-- **HTML:** Passed through the **W3C Markup Validator** — only minor warnings about self-closing tags.  
-![Testing](static/images/docs/warning.png) 
-![Testing](static/images/docs/nuaftercheck.png) 
-- **CSS:** Verified with the **W3C CSS Validator** — zero errors; responsive media queries all clear. 
-![Testing](static/images/docs/cssvalidation.png) 
-- **Responsive rules:** Ensured flexible layouts using CSS Grid and Flexbox across desktop, tablet, and mobile.
+### 4) Performance (Lighthouse)
 
-Root / homepage — clean
+- Audited Home, Offer, Book form, and My Bookings on **Mobile** and **Desktop** in Chrome DevTools (Navigation mode; Performance, A11y, Best Practices, SEO)
 
-Warnings that were fixed
-“Section lacks heading” → added <h2> where meaningful or replaced decorative <section> with <div>.
+| Device   | Perf | A11y | Best | SEO |
+|----------|------|------|------|-----|
+| Mobile   | 96   | 100  | 100  | 91  |
+| Desktop  | 100  | 100  | 100  | 91  |
 
+![Lighthouse Mobile](static/images/docs/lighthouse1.png)  
+![Lighthouse Desktop](static/images/docs/lighthouse2.png)
 
-“Trailing slash on void elements” → removed self-closing slashes from void elements (due flake it is coming back over and over again)
+**Perf notes**
+- Static assets served via WhiteNoise; images sized and compressed
+- Avoided blocking scripts; Bootstrap from CDN with SRI
+
+---
+
+### 5) Browser/device checks
+
+- **Desktop**: Chrome 139, Safari 17 — layout and forms work as expected
+- **Mobile**: iOS Safari (via device + Responsively App) — form controls usable; no horizontal scroll; safe tap targets
+
+---
+**Warnings fixed**
+
+- “Section lacks heading” → added meaningful `<h2>` or replaced decorative `<section>` with `<div>`  
+- “Trailing slash on void elements” → removed self-closing slashes on `<img>`, `<meta>`, `<link>`  
+- Ensured `<!DOCTYPE html>`, `<html lang="en">`, and a single `<title>` in `base.html`  
+- Validated that anchors render real URLs (not raw `{% url %}`) and that template tags resolve in production
+
+---
 
 ### Bugs & Fixes
-1) Date Picker — duplicate icon & invalid ranges
 
-Symptoms
+1) **Date picker: duplicate icon & invalid ranges**  
+   **Symptoms:** Two calendar icons on `type="date"` inputs; past dates selectable; `end_date` could be before `start_date`.  
+   **Cause:** Legacy CSS background image overlapping the native control + missing constraints.  
+   **Fix:** Removed background, set HTML `min` on both date fields, enforced rules server-side.
 
-Two calendar icons visible on date inputs.
+---
 
-Users could select past dates / end_date before start_date.
+### 6) Defect log (examples)
 
-Cause
+1. **Date inputs showed two calendar icons**  
+   **Cause**: legacy CSS background over native `type="date"`  
+   **Fix**: removed background image; kept native picker; enforced `min` on both fields
 
-Legacy CSS calendar background conflicting with the native type="date" control. Frontend fix done.
+2. **Nu HTML errors on templates**  
+   **Cause**: validating raw templates showed `{% url %}` / `{% static %}` as literal text  
+   **Fix**: validated the rendered Heroku pages; ensured `base.html` had `<!DOCTYPE html>`, `<html lang>`, single `<title>`, and proper headings
 
-### Test Matrix
+3. **Validator warning “section lacks heading”**  
+   **Fix**: added semantic `<h2>` (visually hidden where purely decorative) or used `<div>`
 
-| Area        | Scenario   | Steps                        | Expected                              | Result |
-| ----------- | ---------- | ---------------------------- | ------------------------------------- | ------ |
-| Accounts    | Register   | Fill valid form → Submit     | User created, redirect + message      | ✅      |
-| Accounts    | Login      | Enter valid creds            | Redirect to previous/landing          | ✅      |
-| Bookings    | Create     | Fill all fields, valid dates | Booking saved, success message        | ✅      |
-| Bookings    | Edit       | Change dates/notes           | Updates persist                       | ✅      |
-| Bookings    | Past date  | `start_date` = yesterday     | Error “Cannot book past dates.”       | ✅      |
-| Bookings    | Order rule | `end_date` < `start_date`    | Error “End date must be on or after…” | ✅      |
-| My Bookings | Ownership  | User A cannot see User B     | Only own bookings listed              | ✅      |
-| Validation  | HTML       | Nu checker                   | No errors/warnings                    | ✅      |
-| Validation  | CSS        | W3C Jigsaw                   | No errors                             | ✅      |
-| Lighthouse  | Mobile     | Run audit                    | 96 / 100 / 100 / 91                   | ✅      |
-| Lighthouse  | Desktop    | Run audit                    | 100 / 100 / 100 / 91                  | ✅      |
-| Console     | Errors     | Navigate site                | No client errors                      | ✅      |
+---
 
-### Lighthouse Testing
+### 7) What’s next
 
-Lighthouse audits were run on the deployed Heroku app using Chrome DevTools for both Mobile and Desktop modes.
-
-How we ran it
-
-Open the site in Chrome → DevTools → Lighthouse tab.
-
-Mode: Navigation • Categories: Performance, Accessibility, Best Practices, SEO
-
-Device: run twice — Mobile (throttled) and Desktop.
-
-Make sure the page is served as production (no dev toolbars), then click Analyze.
-
-For CI-style rechecks, you can also use PageSpeed Insights with the deployed URL.
-![Testing](static/images/docs/lighthouse1.png) 
-![Testing](static/images/docs/lighthouse2.png) 
-
+- Add automated **Django `TestCase`** coverage for bookings CRUD and permissions
+- Add **Playwright** smoke tests for the core flows
+- Track Lighthouse scores in CI on main after deploy
 ## Deployment
 
-For good practice, this project was deployed early to Heroku
-to surface integration issues (static files, databases, security settings) as soon as possible.
+Deployed early to Heroku to surface integration issues (static files, DB, settings) ASAP.
 
-The project runs on Django 5.2. Development used the default SQLite database; production uses PostgreSQL. Heroku offers a Postgres add-on; alternatively you can use any hosted Postgres. This guide shows Heroku Postgres, but the steps are the same if you supply a DATABASE_URL from another provider.
+- Django 5.2
+- SQLite for local; PostgreSQL in production (Heroku Postgres or external)
+- Example app name below: `roho-3cab264b3559` (replace with yours)
 
-Example Heroku app name used below: roho-3cab264b3559 (replace with your own).
+<details>
+<summary>Steps before first deploy</summary>
 
-<details> <summary>Steps taken before deploying the project to Heroku</summary>
-### Create the Heroku App
+**Create the Heroku app**  
+Heroku → New → Create new app → name + region → Create app
 
-Log into Heroku → New → Create new app.
+**Add PostgreSQL**  
+Resources → Add-ons → Heroku Postgres (Hobby Dev – Free)  
+—or— supply an external `DATABASE_URL`
 
-Choose a unique name (e.g. roho-3cab264b3559) and region Europe.
+**Local env**  
+Create `env.py`; add to `.gitignore`
 
-Click Create app.
+**Settings**  
+Make settings env-aware; configure DB and static files; run initial migrations locally
 
-### Add a PostgreSQL Database
+**Procfile**  
+At repo root (same level as `manage.py`):  
+`web: gunicorn roho.wsgi`
 
-Option A (recommended): Heroku Postgres
-
-App → Resources → Add-ons → search Heroku Postgres → Hobby Dev – Free.
-
-Option B: external Postgres
-
-Provision externally and keep the full DATABASE_URL ready (e.g. postgres://...).
-
-### Create env.py for local development
-
-Keep secrets out of Git. Add env.py to .gitignore.
-
-### Update settings.py
-Make the app env-aware and wire up the DB + static files and run initial migrations locally.
-
-### Procfile & runtime
-At the repository root (same level as manage.py):
-web: gunicorn roho.wsgi
-
-### Requirements
+**Requirements**  
 Django==5.2.*
 gunicorn
 whitenoise
@@ -494,85 +486,56 @@ psycopg2-binary
 
 Commit and push to GitHub.
 
-</details> <details> <summary>First Deployment</summary>
-First Deployment
-
-In Heroku → your app → Settings → Reveal Config Vars, add:
-
-SECRET_KEY → your secret
-
-DEBUG → False
-
-(If you did not add the Heroku Postgres add-on) DATABASE_URL → your external Postgres URL
-
-(Optional, first build only if you’re still arranging static files) set:
-
-DISABLE_COLLECTSTATIC → 1
-Remove this before your final deployment (see below).
-
-In Deploy tab → Deployment method: GitHub → connect your repo → select branch → Deploy Branch.
-
-Once built, click Open app. You should see your Django site.
-
-</details> <details> <summary>Final Deployment</summary>
-Final Deployment
-
-Ensure production settings are safe:
-
-DEBUG = False
-
-ALLOWED_HOSTS includes your-app.herokuapp.com
-
-CSRF_TRUSTED_ORIGINS includes https://your-app.herokuapp.com
-
-In Heroku → Settings → Reveal Config Vars:
-
-Delete DISABLE_COLLECTSTATIC (if you set it earlier).
-
-Confirm DATABASE_URL and SECRET_KEY are present.
-
-Push your latest code to GitHub → in Heroku Deploy tab → Deploy Branch.
-
-After a successful build:
-
-Heroku runs collectstatic and serves assets via WhiteNoise.
-
-Click Open app to verify.
-
+Commit and push.
 </details>
 
-Notes & Gotchas
+<details>
+<summary>First deployment</summary>
 
-CSRF/Host settings: If you see CSRF/Bad Request on Heroku, double-check:
+**Config Vars (Heroku → Settings)**  
+- `SECRET_KEY` → your secret  
+- `DEBUG` → `False`  
+- `DATABASE_URL` → only if using external Postgres
 
-ALLOWED_HOSTS = ["your-app.herokuapp.com", "localhost"]
+(Optional for early builds) `DISABLE_COLLECTSTATIC=1` — remove before final.
 
-CSRF_TRUSTED_ORIGINS = ["https://your-app.herokuapp.com"]
+**Deploy tab**  
+Deployment method: GitHub → connect repo → select branch → Deploy Branch.  
+Open app to verify.
+</details>
 
-Static files: Make sure static/ exists and your templates load assets with {% load static %} and paths like {% static 'css/style.css' %}.
+<details>
+<summary>Final deployment</summary>
 
-Migrations: After changing models, run:
+**Production settings**  
+- `DEBUG = False`  
+- `ALLOWED_HOSTS = ["your-app.herokuapp.com", "localhost"]`  
+- `CSRF_TRUSTED_ORIGINS = ["https://your-app.herokuapp.com"]`
 
+**Heroku Config Vars**  
+- Remove `DISABLE_COLLECTSTATIC` if set  
+- Ensure `DATABASE_URL` and `SECRET_KEY` exist
+
+Push latest to GitHub → Deploy Branch in Heroku → successful build runs `collectstatic` via WhiteNoise → Open app.
+</details>
+
+**Notes & gotchas**
+- **CSRF/Host:** Bad Request? Recheck `ALLOWED_HOSTS` and `CSRF_TRUSTED_ORIGINS`.
+- **Static files:** Use `{% load static %}` and paths like `{% static 'css/style.css' %}`.
+- **Migrations:**  
 python3 manage.py makemigrations
 python3 manage.py migrate
-
-
-Admin user:
-
+- **Admin user:**  
 python3 manage.py createsuperuser
 
+- **Gunicorn:** `Procfile` must be exactly `web: gunicorn roho.wsgi`.
 
-Gunicorn boot issues: confirm Procfile is exactly web: gunicorn roho.wsgi (no file extension, capital P).
+### Forking the repository
+<details>
+<summary>How to fork</summary>
 
-Forking the GitHub Repository
-<details> <summary>Steps to Fork the GitHub Repository</summary>
-
-Open this repository on GitHub.
-
-Click Fork (top-right).
-
+Open the repo on GitHub → click **Fork** (top-right).  
 You’ll get your own copy to experiment without affecting the original.
-
 </details>
 
 ## Credits
