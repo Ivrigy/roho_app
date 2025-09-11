@@ -11,6 +11,9 @@ A sass-free booking system for event agencies, art directors, galleries, fairs �
 - [User Flows](#user-flows)  
 - [Pages](#pages)  
 - [Technologies Used](#technologies-used) 
+- [Testing](#testing) 
+- [Deployment](#deployment) 
+- [Credits](#credits) 
 
 ## Overview
 
@@ -308,6 +311,14 @@ design and assets
 
 Testing was woven into every step of Roho’s development — because “it works on my machine” isn’t a QA strategy. While we didn’t write Django `TestCase` unit tests (yet), **manual testing drove the project to rock-solid reliability**.
 
+### Test Environment
+
+Local: macOS, Python 3.12, Django 5.2, Chrome & Safari
+
+Prod: Heroku (Gunicorn + WhiteNoise)
+
+Branching: feature branches → PRs after passing lint & checks
+
 ### Manual Testing Overview
 
 - **Authentication Workflow**  
@@ -322,6 +333,37 @@ Testing was woven into every step of Roho’s development — because “it work
 - **Navigation & Layout**  
   - Consistent header/footer across all pages  
   - Responsive behavior on desktop, tablet, and (lightning-fast) mobile
+Core User Flows
+
+Register / Login / Logout — forms render with Bootstrap, errors shown inline, login redirects correctly.
+
+Book a Service — required fields enforced; start_date cannot be in the past; end_date must be on/after start_date.
+
+Edit Booking — prefilled values; validation still enforced on update.
+
+My Bookings — lists only the signed-in user’s bookings; Edit/Delete work as expected.
+
+Validation & Error States
+
+Server-side errors surfaced below fields; clear copy for date rules and required inputs.
+
+
+Access Control
+
+Anonymous users attempting to access protected pages are redirected to the Login page.
+
+Staff-only actions are restricted to the Django admin.
+
+Navigation & Links
+
+Header/nav consistent; all internal links route correctly; external links open in a new tab with rel="noopener".
+
+Console
+
+No client-side errors during normal flows.
+
+Historical: a brief production 500 on /accounts/register/ during early deploy (fixed — see below).
+
 
 ### 🐍 Python (PEP 8)
 - **Linting:** Used **flake8** and VS Code’s built-in linter to enforce style.  
@@ -329,7 +371,9 @@ Testing was woven into every step of Roho’s development — because “it work
   - Maximum line length  
   - Proper function/class names (snake_case & CamelCase)  
   - Consistent indentation and whitespace  
-  - Removal of unused imports and variables  
+  - Removal of unused imports and variables
+
+  ![Testing](static/images/docs/testingpy.png)  
 
 ### 📜 JavaScript (ES6+)
 - **Validation:** Ran **JSHint** (configured with `esversion: 6`) on all custom scripts.  
@@ -340,20 +384,196 @@ Testing was woven into every step of Roho’s development — because “it work
 
 ### 🌐 HTML5 & CSS3
 - **HTML:** Passed through the **W3C Markup Validator** — only minor warnings about self-closing tags.  
-- **CSS:** Verified with the **W3C CSS Validator** — zero errors; responsive media queries all clear.  
+![Testing](static/images/docs/warning.png) 
+![Testing](static/images/docs/nuaftercheck.png) 
+- **CSS:** Verified with the **W3C CSS Validator** — zero errors; responsive media queries all clear. 
+![Testing](static/images/docs/cssvalidation.png) 
 - **Responsive rules:** Ensured flexible layouts using CSS Grid and Flexbox across desktop, tablet, and mobile.
 
-![Testing](static/images/docs/testingpy.png)
-![Testing](static/images/docs/testingcss.png)
+Root / homepage — clean
 
-## Kanban Board
+Warnings that were fixed
+“Section lacks heading” → added <h2> where meaningful or replaced decorative <section> with <div>.
 
-- **Why it matters:**  
-  - Keeps the team aligned on what’s next  
-  - Highlights bottlenecks (“Why is nothing in Review?!”)  
-  - Turns project madness into a satisfying card shuffle  
 
-Not really satisfied with it.
+“Trailing slash on void elements” → removed self-closing slashes from void elements (due flake it is coming back over and over again)
+
+### Bugs & Fixes
+1) Date Picker — duplicate icon & invalid ranges
+
+Symptoms
+
+Two calendar icons visible on date inputs.
+
+Users could select past dates / end_date before start_date.
+
+Cause
+
+Legacy CSS calendar background conflicting with the native type="date" control. Frontend fix done.
+
+### Test Matrix
+
+| Area        | Scenario   | Steps                        | Expected                              | Result |
+| ----------- | ---------- | ---------------------------- | ------------------------------------- | ------ |
+| Accounts    | Register   | Fill valid form → Submit     | User created, redirect + message      | ✅      |
+| Accounts    | Login      | Enter valid creds            | Redirect to previous/landing          | ✅      |
+| Bookings    | Create     | Fill all fields, valid dates | Booking saved, success message        | ✅      |
+| Bookings    | Edit       | Change dates/notes           | Updates persist                       | ✅      |
+| Bookings    | Past date  | `start_date` = yesterday     | Error “Cannot book past dates.”       | ✅      |
+| Bookings    | Order rule | `end_date` < `start_date`    | Error “End date must be on or after…” | ✅      |
+| My Bookings | Ownership  | User A cannot see User B     | Only own bookings listed              | ✅      |
+| Validation  | HTML       | Nu checker                   | No errors/warnings                    | ✅      |
+| Validation  | CSS        | W3C Jigsaw                   | No errors                             | ✅      |
+| Lighthouse  | Mobile     | Run audit                    | 96 / 100 / 100 / 91                   | ✅      |
+| Lighthouse  | Desktop    | Run audit                    | 100 / 100 / 100 / 91                  | ✅      |
+| Console     | Errors     | Navigate site                | No client errors                      | ✅      |
+
+### Lighthouse Testing
+
+Lighthouse audits were run on the deployed Heroku app using Chrome DevTools for both Mobile and Desktop modes.
+
+How we ran it
+
+Open the site in Chrome → DevTools → Lighthouse tab.
+
+Mode: Navigation • Categories: Performance, Accessibility, Best Practices, SEO
+
+Device: run twice — Mobile (throttled) and Desktop.
+
+Make sure the page is served as production (no dev toolbars), then click Analyze.
+
+For CI-style rechecks, you can also use PageSpeed Insights with the deployed URL.
+![Testing](static/images/docs/lighthouse1.png) 
+![Testing](static/images/docs/lighthouse2.png) 
+
+## Deployment
+
+For good practice, this project was deployed early to Heroku
+to surface integration issues (static files, databases, security settings) as soon as possible.
+
+The project runs on Django 5.2. Development used the default SQLite database; production uses PostgreSQL. Heroku offers a Postgres add-on; alternatively you can use any hosted Postgres. This guide shows Heroku Postgres, but the steps are the same if you supply a DATABASE_URL from another provider.
+
+Example Heroku app name used below: roho-3cab264b3559 (replace with your own).
+
+<details> <summary>Steps taken before deploying the project to Heroku</summary>
+### Create the Heroku App
+
+Log into Heroku → New → Create new app.
+
+Choose a unique name (e.g. roho-3cab264b3559) and region Europe.
+
+Click Create app.
+
+### Add a PostgreSQL Database
+
+Option A (recommended): Heroku Postgres
+
+App → Resources → Add-ons → search Heroku Postgres → Hobby Dev – Free.
+
+Option B: external Postgres
+
+Provision externally and keep the full DATABASE_URL ready (e.g. postgres://...).
+
+### Create env.py for local development
+
+Keep secrets out of Git. Add env.py to .gitignore.
+
+### Update settings.py
+Make the app env-aware and wire up the DB + static files and run initial migrations locally.
+
+### Procfile & runtime
+At the repository root (same level as manage.py):
+web: gunicorn roho.wsgi
+
+### Requirements
+Django==5.2.*
+gunicorn
+whitenoise
+dj-database-url
+psycopg2-binary
+
+Commit and push to GitHub.
+
+</details> <details> <summary>First Deployment</summary>
+First Deployment
+
+In Heroku → your app → Settings → Reveal Config Vars, add:
+
+SECRET_KEY → your secret
+
+DEBUG → False
+
+(If you did not add the Heroku Postgres add-on) DATABASE_URL → your external Postgres URL
+
+(Optional, first build only if you’re still arranging static files) set:
+
+DISABLE_COLLECTSTATIC → 1
+Remove this before your final deployment (see below).
+
+In Deploy tab → Deployment method: GitHub → connect your repo → select branch → Deploy Branch.
+
+Once built, click Open app. You should see your Django site.
+
+</details> <details> <summary>Final Deployment</summary>
+Final Deployment
+
+Ensure production settings are safe:
+
+DEBUG = False
+
+ALLOWED_HOSTS includes your-app.herokuapp.com
+
+CSRF_TRUSTED_ORIGINS includes https://your-app.herokuapp.com
+
+In Heroku → Settings → Reveal Config Vars:
+
+Delete DISABLE_COLLECTSTATIC (if you set it earlier).
+
+Confirm DATABASE_URL and SECRET_KEY are present.
+
+Push your latest code to GitHub → in Heroku Deploy tab → Deploy Branch.
+
+After a successful build:
+
+Heroku runs collectstatic and serves assets via WhiteNoise.
+
+Click Open app to verify.
+
+</details>
+
+Notes & Gotchas
+
+CSRF/Host settings: If you see CSRF/Bad Request on Heroku, double-check:
+
+ALLOWED_HOSTS = ["your-app.herokuapp.com", "localhost"]
+
+CSRF_TRUSTED_ORIGINS = ["https://your-app.herokuapp.com"]
+
+Static files: Make sure static/ exists and your templates load assets with {% load static %} and paths like {% static 'css/style.css' %}.
+
+Migrations: After changing models, run:
+
+python3 manage.py makemigrations
+python3 manage.py migrate
+
+
+Admin user:
+
+python3 manage.py createsuperuser
+
+
+Gunicorn boot issues: confirm Procfile is exactly web: gunicorn roho.wsgi (no file extension, capital P).
+
+Forking the GitHub Repository
+<details> <summary>Steps to Fork the GitHub Repository</summary>
+
+Open this repository on GitHub.
+
+Click Fork (top-right).
+
+You’ll get your own copy to experiment without affecting the original.
+
+</details>
 
 ## Credits
 
